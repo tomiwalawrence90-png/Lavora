@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="LAVORA – Your space. Your people. Your world. Play, stream and connect across all games.">
+<title>LAVORA | Your Gaming World</title>
+<meta name="color-scheme" content="light dark">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("lavora_theme")==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/svg+xml" href="./icons/logo.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10l5-3v10l-5-3z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z"/></symbol>
+    <symbol id="i-userplus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M18 8v6M15 11h6"/></symbol>
+    <symbol id="i-usercheck" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M15.5 11.5l2 2 3.5-4"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5M15 8l4 4-4 4M19 12H9"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-games" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10.5v4M5.5 12.5h4M16 11.5h.01M18.5 13.5h.01"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></symbol>
+  </defs>
+</svg>
+
+<div id="app">
+
+<!-- ============ WELCOME ============ -->
+<section id="welcome-screen" class="welcome-screen" hidden>
+  <div class="welcome-glow" aria-hidden="true"></div>
+  <div class="welcome-content">
+    <img class="welcome-logo" src="./icons/icon-512.png" alt="LAVORA logo" width="128" height="128">
+    <h1 class="wordmark">LAVORA</h1>
+    <p class="tagline">Your space. Your people. Your world.</p>
+    <p class="welcome-copy">One community. All games. Post your moments, go live and talk with players everywhere.</p>
+    <button id="getStarted" class="btn btn-primary btn-lg">Get started</button>
+    <p class="creator">Created by Lawrence Balogun</p>
+  </div>
+</section>
+
+<!-- ============ AUTH ============ -->
+<section id="auth-screen" class="auth-screen" hidden>
+  <div class="auth-card gb">
+    <div class="auth-top">
+      <img class="auth-logo" src="./icons/icon-192.png" alt="" width="52" height="52">
+      <div>
+        <h2 id="auth-title">Create account</h2>
+        <p id="auth-description" class="muted">Join the LAVORA community.</p>
+      </div>
+    </div>
+
+    <div class="segmented" role="tablist" aria-label="Account mode">
+      <button type="button" role="tab" id="tab-signup" class="seg active" aria-selected="true">Sign up</button>
+      <button type="button" role="tab" id="tab-login" class="seg" aria-selected="false">Log in</button>
+    </div>
+
+    <form id="auth-form" novalidate>
+      <label for="email">Email address</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+      <label for="password">Password</label>
+      <div class="password-wrap">
+        <input type="password" id="password" placeholder="At least 6 characters" minlength="6" autocomplete="current-password" required>
+        <button type="button" id="toggle-password" class="ghost-icon" aria-label="Show password">Show</button>
+      </div>
+      <button type="submit" id="auth-submit" class="btn btn-primary btn-block">Create account</button>
+    </form>
+    <p id="auth-message" class="form-message" aria-live="polite"></p>
+    <button type="button" class="btn btn-ghost btn-block" id="back-home">Back</button>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING ============ -->
+<section id="onboard-screen" class="onboard-screen" hidden>
+  <div class="onboard-card gb">
+    <div class="ob-progress" aria-hidden="true"><span id="ob-bar"></span></div>
+    <form id="ob-step1" novalidate>
+      <h2>Design your profile</h2>
+      <p class="muted">Choose how you show up on LAVORA.</p>
+      <div class="ob-preview"><div class="profile-avatar" id="ob-avatar">L</div></div>
+      <label>Pick an avatar</label>
+      <div class="avatar-grid" id="ob-avatar-grid"></div>
+      <input type="file" id="ob-avatar-file" accept="image/*" hidden>
+      <label for="ob-name">Display name <span class="count" id="ob-name-count">0/50</span></label>
+      <input type="text" id="ob-name" placeholder="Your display name" maxlength="50" autocomplete="nickname">
+      <label for="ob-username">Username</label>
+      <div class="prefixed"><span>@</span><input type="text" id="ob-username" placeholder="username" maxlength="30" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="username"></div>
+      <p class="hint">3–30 letters, numbers, _ or .</p>
+      <label for="ob-bio">Bio <span class="count">optional</span></label>
+      <textarea id="ob-bio" rows="2" maxlength="250" placeholder="Tell people what you play"></textarea>
+      <p id="ob-msg" class="form-message" aria-live="polite"></p>
+      <button type="submit" class="btn btn-primary btn-block">Next</button>
+      <button type="button" id="ob-logout" class="btn btn-ghost btn-block">Use a different account</button>
+    </form>
+    <div id="ob-step2" hidden>
+      <h2>Pick your favourite games</h2>
+      <p class="muted">Choose as many as you like. You can change this later.</p>
+      <div class="ob-games" id="ob-games"></div>
+      <p class="muted small" id="ob-count">0 selected</p>
+      <p id="ob-msg2" class="form-message" aria-live="polite"></p>
+      <button type="button" id="ob-finish" class="btn btn-primary btn-block">Finish</button>
+      <button type="button" id="ob-back" class="btn btn-ghost btn-block">Back</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="dashboard-screen" hidden>
+
+<header class="top-header">
+  <button type="button" class="icon-btn" id="open-sidebar" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false"><svg class="ic"><use href="#i-menu"/></svg></button>
+  <a class="brand-block" href="#home" data-nav="home" aria-label="LAVORA home">
+    <img class="brand-logo" src="./icons/icon-192.png" alt="" width="36" height="36">
+    <span class="brand-text"><span class="brand-word">LAVORA</span>
+    <span class="brand-tag">Your space. Your people. Your world.</span></span>
+  </a>
+  <div class="header-actions">
+    <button type="button" class="icon-btn" id="open-notifications" aria-label="Notifications"><svg class="ic"><use href="#i-bell"/></svg><span class="badge" id="notif-badge" hidden>0</span></button>
+    <button type="button" class="icon-btn" id="open-search" aria-label="Search"><svg class="ic"><use href="#i-search"/></svg></button>
+  </div>
+</header>
+
+<main id="main-content">
+
+<!-- HOME (feed only) -->
+<section id="home-page" class="app-page">
+  <div class="composer gb" id="composer">
+    <div class="composer-top">
+      <h3>Create a Post</h3>
+      <div class="composer-icons">
+        <label class="icon-btn" for="post-photo" aria-label="Add photo"><svg class="ic"><use href="#i-camera"/></svg></label>
+        <label class="icon-btn" for="post-video" aria-label="Add video"><svg class="ic"><use href="#i-video"/></svg></label>
+      </div>
+    </div>
+    <form id="create-post-form">
+      <div class="composer-field">
+        <div class="avatar sm" id="composer-avatar">L</div>
+        <textarea id="post-content" placeholder="What's happening in your gaming world?" maxlength="2000" rows="1" aria-label="Post text"></textarea>
+      </div>
+      <input type="file" id="post-photo" accept="image/*" hidden>
+      <input type="file" id="post-video" accept="video/mp4,video/webm,video/quicktime" hidden>
+      <div id="post-media-preview" class="media-preview" hidden></div>
+      <div class="composer-foot">
+        <span class="counter" id="post-counter">0 / 2000</span>
+        <button type="submit" id="publish-post" class="btn btn-primary btn-sm">Post</button>
+      </div>
+    </form>
+    <p id="post-status" class="form-message" aria-live="polite"></p>
+  </div>
+
+  <div class="feed-tabs" role="tablist" aria-label="Feed filter">
+    <button type="button" class="cat active" role="tab" data-feed="all" aria-selected="true">Everyone</button>
+    <button type="button" class="cat" role="tab" data-feed="following" aria-selected="false">Following</button>
+    <button type="button" class="cat" role="tab" data-feed="mine" aria-selected="false">My posts</button>
+  </div>
+  <div id="posts-list" class="posts-list"></div>
+</section>
+
+<!-- POST DETAIL -->
+<section id="post-page" class="app-page" hidden>
+  <button type="button" class="btn btn-ghost btn-sm back-btn" data-back><svg class="ic"><use href="#i-back"/></svg>Back</button>
+  <div id="post-detail"></div>
+  <form id="detail-comment-form" class="detail-comment-form" autocomplete="off">
+    <div class="avatar sm" id="detail-comment-avatar">L</div>
+    <input type="text" id="detail-comment-input" maxlength="500" placeholder="Add a comment…" aria-label="Add a comment">
+    <button type="submit" class="btn btn-primary send-btn sm" aria-label="Send comment"><svg class="ic"><use href="#i-send"/></svg></button>
+  </form>
+</section>
+
+<!-- OTHER USER PROFILE -->
+<section id="user-page" class="app-page" hidden>
+  <button type="button" class="btn btn-ghost btn-sm back-btn" data-back><svg class="ic"><use href="#i-back"/></svg>Back</button>
+  <div class="profile-card gb">
+    <div class="profile-banner" id="user-banner" aria-hidden="true"></div>
+    <div class="profile-body">
+      <div class="profile-avatar" id="user-avatar">L</div>
+      <h1 id="user-display-name">LAVORA Member</h1>
+      <p class="handle" id="user-username"></p>
+      <p id="user-bio" class="bio"></p>
+      <div class="meta-row"><span id="user-country" class="meta" hidden></span></div>
+      <div class="stats">
+        <div><b id="user-stat-posts">0</b><span>Posts</span></div>
+        <div><b id="user-stat-games">0</b><span>Games</span></div>
+        <div><b id="user-stat-joined">–</b><span>Joined</span></div>
+      </div>
+      <button type="button" id="user-follow" class="btn btn-primary btn-block"></button>
+    </div>
+  </div>
+  <div class="card gb">
+    <h2>Favourite games</h2>
+    <div class="chip-row" id="user-game-list"></div>
+  </div>
+  <h2 class="posts-title">Posts</h2>
+  <div id="user-posts" class="posts-list"></div>
+</section>
+
+<!-- GAMES -->
+<section id="games-page" class="app-page" hidden>
+  <span class="eyebrow">Discover</span>
+  <div class="section-top"><h1 class="page-title" style="margin:0">Games</h1><span class="tag" id="game-count">12 games</span></div>
+  <div id="featured" class="featured gb" aria-label="Featured games" style="margin-top:16px"></div>
+  <section class="block" id="my-games-block" style="margin-top:6px" hidden>
+    <div class="section-top"><div><span class="eyebrow">Your lineup</span><h2>My games</h2></div><span class="tag">Tap to remove</span></div>
+    <div id="my-games-row" class="chip-row"></div>
+  </section>
+  <div class="search-field" style="margin-top:14px"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="game-search" placeholder="Search games" aria-label="Search games"></div>
+  <div class="category-strip" id="category-strip" role="tablist" aria-label="Game categories"></div>
+  <div class="game-grid" id="game-grid"></div>
+</section>
+
+<!-- SAVED -->
+<section id="saved-page" class="app-page" hidden>
+  <span class="eyebrow">Your collection</span>
+  <h1 class="page-title">Saved posts</h1>
+  <div id="saved-list" class="posts-list"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings-page" class="app-page" hidden>
+  <span class="eyebrow">Preferences</span>
+  <h1 class="page-title">Settings</h1>
+  <div class="card gb">
+    <h2>Appearance</h2>
+    <label class="switch-row" for="set-motion"><span>Reduce motion<small>Turn off animations</small></span><input type="checkbox" id="set-motion" class="switch"></label>
+    <label class="switch-row" for="set-seed"><span>Demo content<small>Show sample posts, comments and likes</small></span><input type="checkbox" id="set-seed" class="switch" checked></label>
+    <label class="switch-row" for="set-autoplay"><span>Autoplay videos<small>Play feed videos muted on scroll</small></span><input type="checkbox" id="set-autoplay" class="switch"></label>
+  </div>
+  <div class="card gb">
+    <h2>Notifications</h2>
+    <label class="switch-row" for="set-notifs"><span>In-app notifications<small>Likes, comments and follows</small></span><input type="checkbox" id="set-notifs" class="switch" checked></label>
+  </div>
+  <div class="card gb">
+    <h2>Profile setup</h2>
+    <p class="muted">Replay the sign-up steps: avatar, profile design and favourite games.</p>
+    <div class="btn-row"><button type="button" id="redo-onboarding" class="btn btn-outline">Open profile setup</button></div>
+  </div>
+  <div class="card gb">
+    <h2>Data on this device</h2>
+    <p class="muted">Posts, likes, saves and follows are stored on this device until a server is connected.</p>
+    <div class="btn-row"><button type="button" id="clear-data" class="btn btn-danger"><svg class="ic"><use href="#i-trash"/></svg>Clear local data</button></div>
+  </div>
+  <div class="card gb">
+    <h2>About</h2>
+    <p class="muted">LAVORA 4.0 · Your space. Your people. Your world.</p>
+    <p class="muted small">Created by Lawrence Balogun</p>
+  </div>
+</section>
+
+<!-- LIVE -->
+<section id="live-page" class="app-page" hidden>
+  <div class="hero gb">
+    <div class="hero-art hero-art-live" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <span class="eyebrow">Lavora broadcast network</span>
+      <h1>LIVE <span class="grad">ARENA</span></h1>
+      <p>Watch, connect and discover gaming streams.</p>
+      <div class="hero-cta"><button type="button" class="btn btn-pill" id="open-live-studio"><svg class="ic"><use href="#i-video"/></svg>START BROADCASTING</button></div>
+    </div>
+  </div>
+  <div class="section-top block"><div><span class="eyebrow">Community streams</span><h2>Live broadcasts</h2></div><span class="live-indicator">● LIVE</span></div>
+  <div id="live-stream-list" class="empty-state gb">
+    <div class="empty-icon">LIVE</div>
+    <h3>No live broadcasts yet</h3>
+    <p>When players start streaming, their broadcasts will appear here.</p>
+  </div>
+</section>
+
+<!-- LIVE STUDIO -->
+<section id="live-studio-page" class="app-page" hidden>
+  <button type="button" id="back-to-live" class="btn btn-ghost btn-sm back-btn">← Back to live</button>
+  <span class="eyebrow">Creator studio</span>
+  <h1 class="page-title">LIVE STUDIO</h1>
+
+  <div class="video-container gb">
+    <video id="live-preview" autoplay muted playsinline></video>
+    <div id="video-placeholder"><svg class="ic xl"><use href="#i-video"/></svg><span>Your camera preview will appear here.</span></div>
+    <span id="live-badge" class="live-badge" hidden>● LIVE</span>
+  </div>
+
+  <div class="card gb studio-controls">
+    <label for="live-game">Choose your game</label>
+    <select id="live-game"><option value="">Select a game</option></select>
+    <label for="live-game-custom">If your game isn't listed</label>
+    <input type="text" id="live-game-custom" placeholder="Enter another game name" maxlength="60">
+    <label for="live-title">Stream title</label>
+    <input type="text" id="live-title" placeholder="Give your live a title" maxlength="80">
+    <div class="btn-row">
+      <button type="button" id="camera-start" class="btn btn-outline">Enable camera</button>
+      <button type="button" id="broadcast-start" class="btn btn-primary" disabled>Go live</button>
+      <button type="button" id="broadcast-stop" class="btn btn-danger" hidden>End broadcast</button>
+    </div>
+    <p id="live-status" class="form-message">Camera and streaming services are not yet connected.</p>
+  </div>
+
+  <div class="card gb">
+    <span class="eyebrow">Live interactions</span>
+    <p class="muted">Viewer count, comments, likes and reactions will appear here when broadcasting is connected.</p>
+    <div id="live-viewer-count" class="viewer-count">0 viewers</div>
+  </div>
+</section>
+
+<!-- PUBLIC CHAT -->
+<section id="messages-page" class="app-page chat-page" hidden>
+  <div class="chat-container gb">
+    <div class="chat-heading">
+      <img class="chat-art" src="./images/chat-art.svg" alt="" aria-hidden="true">
+      <div><span class="eyebrow">Lavora global network</span><h2>Public Chat</h2><p class="muted">One community. Many games. One conversation.</p></div>
+      <span class="online-dot" id="online-dot">● Connecting</span>
+    </div>
+    <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+    <form id="public-chat-form" class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Write a public message…" maxlength="1000" autocomplete="off" required>
+      <button type="submit" class="btn btn-primary send-btn" aria-label="Send"><svg class="ic"><use href="#i-send"/></svg></button>
+    </form>
+    <p id="chat-status" class="form-message"></p>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile-page" class="app-page" hidden>
+  <div class="profile-card gb">
+    <div class="profile-banner" id="profile-banner" aria-hidden="true"></div>
+    <div class="profile-body">
+      <div class="profile-avatar" id="profile-avatar">L</div>
+      <h1 id="profile-display-name">LAVORA Member</h1>
+      <p class="handle" id="profile-username"></p>
+      <p id="profile-bio" class="bio">Your place in the LAVORA community.</p>
+      <div class="meta-row">
+        <span id="profile-country" class="meta" hidden></span>
+        <span id="profile-email" class="meta"></span>
+      </div>
+      <div class="stats">
+        <div><b id="stat-posts">–</b><span>Posts</span></div>
+        <div><b id="stat-games">0</b><span>Games</span></div>
+        <div><b id="stat-joined">–</b><span>Joined</span></div>
+      </div>
+      <button type="button" id="edit-profile" class="btn btn-primary btn-block"><svg class="ic"><use href="#i-edit"/></svg>Edit profile</button>
+    </div>
+  </div>
+
+  <div class="card gb">
+    <span class="eyebrow">Gaming identity</span>
+    <h2>My games</h2>
+    <div class="chip-row" id="profile-game-list"></div>
+    <p class="muted small">Add games from the Games tab or while editing your profile.</p>
+  </div>
+
+  <div class="card gb">
+    <span class="eyebrow">Account</span>
+    <p class="muted">Manage your LAVORA account.</p>
+    <button type="button" id="logout" class="btn btn-danger"><svg class="ic"><use href="#i-logout"/></svg>Log out</button>
+  </div>
+
+  <p class="footer-credit">Created by Lawrence Balogun · LAVORA</p>
+</section>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Main">
+  <button class="nav-button active" data-page="home" type="button"><svg class="ic"><use href="#i-home"/></svg><span>Home</span></button>
+  <button class="nav-button" data-page="games" type="button"><svg class="ic"><use href="#i-games"/></svg><span>Games</span></button>
+  <button class="nav-button" data-page="live" type="button"><svg class="ic"><use href="#i-live"/></svg><span>Live</span></button>
+  <button class="nav-button" data-page="messages" type="button"><svg class="ic"><use href="#i-chat"/></svg><span>Chat</span></button>
+  <button class="nav-button" data-page="profile" type="button"><svg class="ic"><use href="#i-user"/></svg><span>Profile</span></button>
+</nav>
+
+<!-- ===== SIDEBAR ===== -->
+<div id="sidebar-wrap" class="sidebar-wrap" hidden>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+  <aside id="sidebar" class="sidebar" aria-label="Menu">
+    <div class="sb-head">
+      <div class="avatar md" id="sb-avatar">L</div>
+      <div class="sb-who"><b id="sb-name">LAVORA Member</b><span id="sb-user"></span></div>
+      <button type="button" class="icon-btn" id="close-sidebar" aria-label="Close menu"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+    <nav class="sb-nav">
+      <button type="button" class="sb-link active" data-nav="home"><svg class="ic"><use href="#i-home"/></svg>Home</button>
+      <button type="button" class="sb-link" data-nav="games"><svg class="ic"><use href="#i-games"/></svg>Explore Games</button>
+      <button type="button" class="sb-link" data-nav="live"><svg class="ic"><use href="#i-live"/></svg>Live Arena</button>
+      <button type="button" class="sb-link" data-nav="live-studio"><svg class="ic"><use href="#i-video"/></svg>Go Live Studio</button>
+      <button type="button" class="sb-link" data-nav="messages"><svg class="ic"><use href="#i-chat"/></svg>Public Chat</button>
+      <div class="sb-sep"></div>
+      <button type="button" class="sb-link" data-nav="saved"><svg class="ic"><use href="#i-bookmark"/></svg>Saved posts</button>
+      <button type="button" class="sb-link" id="sb-notifs"><svg class="ic"><use href="#i-bell"/></svg>Notifications</button>
+      <button type="button" class="sb-link" id="sb-search"><svg class="ic"><use href="#i-search"/></svg>Search</button>
+      <button type="button" class="sb-link" data-nav="profile"><svg class="ic"><use href="#i-user"/></svg>My Profile</button>
+      <button type="button" class="sb-link" data-nav="settings"><svg class="ic"><use href="#i-settings"/></svg>Settings</button>
+      <div class="sb-sep"></div>
+      <button type="button" class="sb-link sb-theme" id="sb-theme" role="switch" aria-checked="false"><svg class="ic"><use href="#i-moon"/></svg>Dark mode<span class="sb-switch" aria-hidden="true"></span></button>
+    </nav>
+    <div class="sb-foot">
+      <button type="button" class="sb-link danger" id="sb-logout"><svg class="ic"><use href="#i-logout"/></svg>Log out</button>
+      <p>LAVORA · by Lawrence Balogun</p>
+    </div>
+  </aside>
+</div>
+
+<!-- ===== EDIT PROFILE SHEET ===== -->
+<div id="edit-sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="edit-title">
+  <div class="sheet-backdrop" data-close="edit-sheet"></div>
+  <div class="sheet-panel gb">
+    <div class="sheet-head">
+      <button type="button" class="icon-btn" data-close="edit-sheet" aria-label="Close"><svg class="ic"><use href="#i-close"/></svg></button>
+      <h2 id="edit-title">Edit profile</h2>
+      <span class="head-spacer"></span>
+    </div>
+
+    <form id="profile-edit-form" class="sheet-body" novalidate>
+      <div class="avatar-edit">
+        <button type="button" id="avatar-pick" class="avatar-big" aria-label="Change profile photo">
+          <span id="edit-avatar-preview" class="avatar-img">L</span>
+          <span class="avatar-cam"><svg class="ic"><use href="#i-camera"/></svg></span>
+        </button>
+        <input type="file" id="avatar-file" accept="image/*" hidden>
+        <div class="avatar-links">
+          <button type="button" id="avatar-change" class="link-btn">Change photo</button>
+          <button type="button" id="avatar-remove" class="link-btn danger" hidden>Remove</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Or choose an avatar</label>
+        <div class="avatar-grid" id="edit-avatar-grid"></div>
+      </div>
+
+      <div class="field">
+        <label for="edit-display-name">Display name <span class="count" id="count-name">0/50</span></label>
+        <input type="text" id="edit-display-name" placeholder="Your display name" maxlength="50" autocomplete="nickname">
+      </div>
+
+      <div class="field">
+        <label for="edit-username">Username <span class="count" id="username-state"></span></label>
+        <div class="prefixed"><span>@</span><input type="text" id="edit-username" placeholder="username" maxlength="30" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="username"></div>
+        <p class="hint" id="username-hint">3–30 letters, numbers, _ or .</p>
+      </div>
+
+      <div class="field">
+        <label for="edit-bio">Bio <span class="count" id="count-bio">0/250</span></label>
+        <textarea id="edit-bio" placeholder="Tell the LAVORA community about yourself…" maxlength="250" rows="3"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="edit-country">Country</label>
+        <input type="text" id="edit-country" list="country-list" placeholder="Start typing your country" maxlength="60" autocomplete="off">
+        <datalist id="country-list"></datalist>
+      </div>
+
+      <div class="field">
+        <label>Favourite games <span class="count" id="count-games">0 selected</span></label>
+        <div class="chip-row" id="edit-games-picker"></div>
+        <div class="add-game">
+          <input type="text" id="edit-custom-game" placeholder="Add another game" maxlength="40">
+          <button type="button" id="add-custom-game" class="btn btn-ghost btn-sm">Add</button>
+        </div>
+      </div>
+
+      <p id="profile-edit-status" class="form-message" aria-live="polite"></p>
+    </form>
+
+    <div class="sheet-foot">
+      <button type="button" class="btn btn-ghost" id="cancel-profile">Cancel</button>
+      <button type="submit" form="profile-edit-form" id="save-profile" class="btn btn-primary" disabled>Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GAME DETAIL SHEET ===== -->
+<div id="game-sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="game-sheet-name">
+  <div class="sheet-backdrop" data-close="game-sheet"></div>
+  <div class="sheet-panel gb">
+    <div class="game-banner" id="game-banner"></div>
+    <button type="button" class="icon-btn game-close" data-close="game-sheet" aria-label="Close"><svg class="ic"><use href="#i-close"/></svg></button>
+    <div class="sheet-body game-sheet-body">
+      <div class="game-sheet-head">
+        <div class="game-sheet-art" id="game-sheet-art"></div>
+        <div><h2 id="game-sheet-name"></h2><p class="muted" id="game-sheet-meta"></p></div>
+      </div>
+      <div class="game-actions">
+        <button type="button" id="game-sheet-add" class="btn btn-primary btn-block"></button>
+        <button type="button" id="game-sheet-live" class="btn btn-outline btn-block"><svg class="ic"><use href="#i-video"/></svg>Stream this game</button>
+        <button type="button" id="game-sheet-posts" class="btn btn-ghost btn-block"><svg class="ic"><use href="#i-search"/></svg>Find posts</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEARCH SHEET ===== -->
+<div id="search-sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="sheet-backdrop" data-close="search-sheet"></div>
+  <div class="sheet-panel gb">
+    <div class="sheet-head">
+      <div class="search-field grow"><svg class="ic"><use href="#i-search"/></svg><input type="search" id="global-search" placeholder="Search games and posts" autocomplete="off"></div>
+      <button type="button" class="icon-btn" data-close="search-sheet" aria-label="Close"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="search-results"></div>
+  </div>
+</div>
+
+<!-- ===== NOTIFICATIONS SHEET ===== -->
+<div id="notif-sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-label="Notifications">
+  <div class="sheet-backdrop" data-close="notif-sheet"></div>
+  <div class="sheet-panel gb">
+    <div class="sheet-head">
+      <h2>Notifications</h2>
+      <button type="button" class="btn btn-ghost btn-sm" id="notif-clear">Clear all</button>
+      <button type="button" class="icon-btn" data-close="notif-sheet" aria-label="Close"><svg class="ic"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="notif-list"></div>
+  </div>
+</div>
+
+</section>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./seed.js"></script>
+<script src="./script.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(err => console.warn("SW failed", err));
+  });
+}
+</script>
+</body>
+</html>
