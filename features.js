@@ -281,7 +281,10 @@ async function uploadChatImage(file) {
       const { error } = await db.storage.from(MEDIA_BUCKET).upload(path, blob, { contentType: blob.type });
       if (error) throw error;
       return db.storage.from(MEDIA_BUCKET).getPublicUrl(path).data.publicUrl;
-    } catch (_) { /* bucket not set up: embed a small copy instead */ }
+    } catch (err) {
+      // Online mode: never embed base64 in messages.content (the DB check constraint rejects it).
+      throw new Error("Photo upload failed (" + (err && err.message ? err.message : "storage error") + "). Create the public 'post-media' bucket + upload policy: see fix-chat-images.sql");
+    }
   }
   const small = keep && file.size <= 350 * 1024 ? file : await scaleToBlob(file, 900, "image/jpeg", 0.7), d = await b2d(small);
   if (d.length > 380000) throw new Error("Photo upload needs the post-media bucket (see README)");
