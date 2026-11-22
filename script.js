@@ -266,6 +266,7 @@ function finishEnter() {
   route(location.hash.slice(1), false);
   history.replaceState({ page: location.hash.slice(1) || "home" }, "", location.hash || "#home");
   syncMyGamesFromProfile(); renderGames(); renderMyGames(); updateNotifBadge();
+  if (window.lavoraFeatures) lavoraFeatures.onEnter();
   if (!LS.get("lavora_welcomed_" + currentUser.id, false)) { LS.set("lavora_welcomed_" + currentUser.id, true); addNotif("Welcome to LAVORA! Share your first post from Home."); }
 }
 
@@ -1060,71 +1061,7 @@ listen("sb-theme", "click", () => {
 });
 applyTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
 
-// ---------- Public chat ----------
-function addMessage(m, { animate = true } = {}) {
-  if (m.id && seenMessageIds.has(m.id)) return; if (m.id) seenMessageIds.add(m.id);
-  const list = get("chat-messages"), mine = currentUser && m.author_id === currentUser.id, item = document.createElement("div");
-  list.querySelectorAll(".chat-message.system").forEach((x, i) => { if (i > 0) x.remove(); });
-  item.className = "chat-message" + (mine ? " mine" : ""); if (!animate) item.style.animation = "none";
-  item.innerHTML = '<div class="chat-username"></div><div class="chat-content"></div><div class="chat-time"></div>';
-  const un = item.querySelector(".chat-username"); un.textContent = mine ? "You" : nameFor(m.author_id); if (!mine && m.author_id) { un.dataset.user = m.author_id; un.classList.add("link-user"); }
-  item.querySelector(".chat-content").textContent = m.content || "";
-  item.querySelector(".chat-time").textContent = m.created_at ? clockTime(m.created_at) : "";
-  const near = list.scrollHeight - list.scrollTop - list.clientHeight < 120;
-  list.appendChild(item); if (near || mine) list.scrollTop = list.scrollHeight;
-}
-function setOnline(on, text) { const d = get("online-dot"); d.textContent = "● " + text; d.classList.toggle("on", on); }
-async function loadMessages() {
-  const list = get("chat-messages"); if (!currentUser) return; setMessage(get("chat-status"), "");
-  try {
-    let data = [];
-    if (!localMode) {
-      try {
-        const r = await db.from("messages").select("id, room_id, author_id, content, created_at")
-          .eq("room_id", GLOBAL_CHAT_ROOM_ID).order("created_at", { ascending: false }).limit(100);
-        if (r.error) throw r.error; data = r.data || [];
-      } catch (err) { if (isNetErr(err)) { localMode = true; toast("Offline: chat saved on this device"); } else throw err; }
-    }
-    if (localMode) data = LS.get("lavora_local_msgs", []).slice().reverse();
-    const msgs = data.slice().reverse(); await fetchProfiles(msgs.map(m => m.author_id));
-    list.replaceChildren(); seenMessageIds.clear();
-    const w = document.createElement("div"); w.className = "chat-message system"; w.textContent = "Welcome to the LAVORA global chat 👋"; list.appendChild(w);
-    if (!msgs.length) { const e = document.createElement("div"); e.className = "chat-message system"; e.textContent = "No messages yet. Say hi!"; list.appendChild(e); }
-    msgs.forEach(m => addMessage(m, { animate: false })); list.scrollTop = list.scrollHeight;
-    if (localMode) setOnline(false, "On this device"); else subscribeToChat();
-  } catch (err) { setMessage(get("chat-status"), "Chat error: " + err.message, "error"); setOnline(false, "Offline"); }
-}
-function subscribeToChat() {
-  if (chatChannel) return;
-  chatChannel = db.channel("lavora-global-chat")
-    .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages", filter: "room_id=eq." + GLOBAL_CHAT_ROOM_ID },
-      async payload => { await fetchProfiles([payload.new.author_id]); addMessage(payload.new); })
-    .subscribe(s => {
-      if (s === "SUBSCRIBED") setOnline(true, "Online");
-      else if (["CHANNEL_ERROR", "TIMED_OUT", "CLOSED"].includes(s)) setOnline(false, "Reconnecting");
-    });
-}
-listen("public-chat-form", "submit", async e => {
-  e.preventDefault(); if (!currentUser) return;
-  const input = get("chat-input"), content = input.value.trim(); if (!content) return;
-  const btn = e.currentTarget.querySelector("button[type=submit]"); btn.disabled = true;
-  try {
-    let data = null;
-    if (!localMode) {
-      try {
-        const r = await db.from("messages").insert({ room_id: GLOBAL_CHAT_ROOM_ID, author_id: currentUser.id, content })
-          .select("id, room_id, author_id, content, created_at").single();
-        if (r.error) throw r.error; data = r.data;
-      } catch (err) { if (isNetErr(err)) { localMode = true; setOnline(false, "On this device"); } else throw err; }
-    }
-    if (localMode) {
-      data = { id: "local-" + uid(), room_id: GLOBAL_CHAT_ROOM_ID, author_id: currentUser.id, content, created_at: new Date().toISOString() };
-      const arr = LS.get("lavora_local_msgs", []); arr.push(data); LS.set("lavora_local_msgs", arr.slice(-200));
-    }
-    input.value = "";
-    addMessage(data || { author_id: currentUser.id, content, created_at: new Date().toISOString() });
-  } catch (err) { toast("Message failed: " + err.message); } finally { btn.disabled = false; input.focus(); }
-});
+// ---------- Public chat: see features.js ----------
 
 // ---------- Live studio ----------
 listen("open-live-studio", "click", () => navigateToPage("live-studio"));
@@ -1162,7 +1099,7 @@ async function doLogout() {
 }
 function resetSession() {
   document.body.classList.remove("on-post"); currentUser = null; currentProfile = null; profileCache.clear(); seenMessageIds.clear(); postsCache = [];
-  get("posts-list").replaceChildren(); get("chat-messages").replaceChildren(); closeSidebar(); history.replaceState(null, "", location.pathname); show("welcome");
+  get("posts-list").replaceChildren(); get("chat-messages").replaceChildren(); if (window.lavoraFeatures) lavoraFeatures.onLeave(); closeSidebar(); history.replaceState(null, "", location.pathname); show("welcome");
 }
 async function initializeLavora() {
   renderCategories(); renderGames(); renderMyGames(); updateAuthMode();

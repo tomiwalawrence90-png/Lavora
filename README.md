@@ -50,3 +50,20 @@ Outfit (UI) and Orbitron (LAVORA wordmark) load from Google Fonts; system fonts 
 - Sign-up onboarding: avatar + profile design, then favourite games. Shown to any account without a username.
 - New logo and app icons. Service-worker cache is now `lavora-v9`.
 - Viewing other people's profiles needs the `profiles readable by members` policy above.
+
+## 6.0 changes
+
+### Chat
+- **Emoji picker** (Recent, Smileys, Gestures, Hearts, Gaming, Fun) and **stickers**: built-in *Gamer* text stickers, big-emoji stickers, and **My stickers**.
+- **Custom stickers**: tap **Add** to turn any image (PNG/JPG/WebP/SVG, small GIFs stay animated) into a sticker. **Import pack / Export** share a `.json` pack between devices. In chat, use ⋯ → *Add to my stickers* / *Save as sticker* to steal one you like. Stickers are stored on the device (max 48) and uploaded to the `post-media` bucket when sent (falls back to embedding if the bucket isn't set up).
+- **Send photos**: image button (or paste an image) → preview → optional caption → send. Tap a photo to open it full screen.
+- **Edit and delete your own messages**: ⋯ on your message. Edited messages show an "edited" label. Changes appear live for everyone.
+  **Run `supabase-chat-policies.sql` once** in the Supabase SQL editor, otherwise Supabase blocks edits/deletes.
+- No new tables or columns. Photos/stickers/edited flags are encoded inside the existing `messages.content`.
+
+### Login streak
+- Opening LAVORA on a new day checks you in: a celebration sheet shows your flame, counter, the last 7 days, progress to the next reward and confetti on milestones (3, 7, 14, 30, 60, 100, 200, 365 …).
+- Flame evolves by tier: Spark → Flame → Blaze → Inferno → Mythic (30+) → Legend (100+).
+- Streak chip in the header, streak card on your profile. Missing a full day resets to 1 (your best is kept).
+- Stored on the device per account (like follows/likes). Respects the "reduce motion" setting.
+- Service-worker cache is now `lavora-v11`.

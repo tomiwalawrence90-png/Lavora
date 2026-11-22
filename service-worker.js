@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "lavora-v10";
+const CACHE_NAME = "lavora-v11";
 
 const APP_FILES = [
   "./",
@@ -7,6 +7,8 @@ const APP_FILES = [
   "./style.css",
   "./script.js",
   "./seed.js",
+  "./features.js",
+  "./features.css",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
