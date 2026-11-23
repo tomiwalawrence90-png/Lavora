@@ -67,3 +67,12 @@ Outfit (UI) and Orbitron (LAVORA wordmark) load from Google Fonts; system fonts 
 - Streak chip in the header, streak card on your profile. Missing a full day resets to 1 (your best is kept).
 - Stored on the device per account (like follows/likes). Respects the "reduce motion" setting.
 - Service-worker cache is now `lavora-v11`.
+
+## 7.0 changes — real live streaming (Agora)
+- Live Studio now publishes camera + mic through Agora. LIVE only shows after Agora and the server both confirm.
+- Live Arena lists real streams; tap one to watch (audience role, no publish rights).
+- Tokens are issued by the Supabase Edge Function `supabase/functions/agora-token` — the App Certificate never touches the app.
+- Free-tier protection: server-side usage estimate, safety buffer, master switch `live_config.streaming_enabled` (OFF by default), fails closed.
+- Setup: run `supabase/migrations/20261123_live_streams.sql`, set secrets, deploy the function, then enable streaming.
+- Not included yet: per-stream chat, gifts, Android gameplay capture (native Capacitor milestone).
+- Service-worker cache is now `lavora-v12`.

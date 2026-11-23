@@ -151,6 +151,7 @@ function navigateToPage(name, { push = true, hash = null } = {}) {
   if (name === "saved") { renderSaved(); if (!postsCache.length) loadPosts().then(renderSaved); }
   if (name !== "live-studio") stopCamera();
   if (name === "messages") loadMessages();
+  if (window.lavoraLive) lavoraLive.onPage(name);
   if (name === "profile") { updateProfile(); loadStats(); }
   if (name === "home") loadPosts();
 }
@@ -1074,15 +1075,10 @@ listen("camera-start", "click", async () => {
     setMessage(status, "Camera ready. Choose your game and a title.", "ok");
   } catch (err) { setMessage(status, "Camera error: " + err.message, "error"); }
 });
-listen("broadcast-start", "click", () => {
-  if (!liveStream) return;
-  if (!(get("live-game-custom").value.trim() || get("live-game").value)) return toast("Pick a game first");
-  get("live-badge").hidden = false; get("broadcast-start").hidden = true; get("broadcast-stop").hidden = false;
-  setMessage(get("live-status"), "Preview mode: public broadcasting is the next development step.");
-  toast("Preview is live on your device only");
-});
-listen("broadcast-stop", "click", stopCamera);
+listen("broadcast-start", "click", () => { if (window.lavoraLive) lavoraLive.goLive(liveStream); else toast("Live module not loaded"); });
+listen("broadcast-stop", "click", async () => { if (window.lavoraLive) await lavoraLive.end(); stopCamera(); });
 function stopCamera() {
+  if (window.lavoraLive) lavoraLive.cleanup();
   if (liveStream) { liveStream.getTracks().forEach(t => t.stop()); liveStream = null; }
   const prev = get("live-preview"); if (prev) prev.srcObject = null;
   get("video-placeholder").hidden = false; get("broadcast-start").disabled = true; get("broadcast-start").hidden = false;
