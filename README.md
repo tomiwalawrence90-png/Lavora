@@ -76,3 +76,15 @@ Outfit (UI) and Orbitron (LAVORA wordmark) load from Google Fonts; system fonts 
 - Setup: run `supabase/migrations/20261123_live_streams.sql`, set secrets, deploy the function, then enable streaming.
 - Not included yet: per-stream chat, gifts, Android gameplay capture (native Capacitor milestone).
 - Service-worker cache is now `lavora-v12`.
+
+## 7.1 changes — live redesign, screen share, chat
+- New Live Studio layout: Camera or Screen + face modes (face cam in a corner you choose), live state chip, viewer/heart counters, host chat panel.
+- Screen sharing is desktop-browser only (Chrome/Edge). Phones cannot share their screen from a browser.
+- Viewer redesign: full-screen player, streamer chip, live chat overlay, spammable heart button (tap or hold), emoji, stickers.
+- Gifts are design-only: sent like stickers, shown as banners and pop-ups, no coins charged.
+- Chat lives in `stream_chat` (RLS, 1 message / 700 ms per user). Hearts are ephemeral Realtime broadcasts.
+- Run `supabase/migrations/20261124_live_chat.sql` and redeploy the `agora-token` function (gameplay streams are now accepted and metered at a higher rate).
+- Service-worker cache is now `lavora-v13`.
+
+## 7.2 changes — Android app
+- `android-app/` is a Capacitor wrapper of the live site plus a native plugin: phone screen + front-camera picture-in-picture, microphone, foreground service, native heartbeat. See `android-app/README-ANDROID.md`.

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./features.css">
+<link rel="stylesheet" href="./live.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -298,34 +299,62 @@
 <!-- LIVE STUDIO -->
 <section id="live-studio-page" class="app-page" hidden>
   <button type="button" id="back-to-live" class="btn btn-ghost btn-sm back-btn">← Back to live</button>
-  <span class="eyebrow">Creator studio</span>
-  <h1 class="page-title">LIVE STUDIO</h1>
-
-  <div class="video-container gb">
-    <video id="live-preview" autoplay muted playsinline></video>
-    <div id="video-placeholder"><svg class="ic xl"><use href="#i-video"/></svg><span>Your camera preview will appear here.</span></div>
-    <span id="live-badge" class="live-badge" hidden>● LIVE</span>
+  <div class="st-head">
+    <div><span class="eyebrow">Creator studio</span><h1 class="page-title">LIVE STUDIO</h1></div>
+    <span id="live-state-chip" class="st-chip">Offline</span>
   </div>
 
-  <div class="card gb studio-controls">
-    <label for="live-game">Choose your game</label>
-    <select id="live-game"><option value="">Select a game</option></select>
-    <label for="live-game-custom">If your game isn't listed</label>
-    <input type="text" id="live-game-custom" placeholder="Enter another game name" maxlength="60">
-    <label for="live-title">Stream title</label>
-    <input type="text" id="live-title" placeholder="Give your live a title" maxlength="80">
-    <div class="btn-row">
-      <button type="button" id="camera-start" class="btn btn-outline">Enable camera</button>
-      <button type="button" id="broadcast-start" class="btn btn-primary" disabled>Go live</button>
-      <button type="button" id="broadcast-stop" class="btn btn-danger" hidden>End broadcast</button>
+  <div class="st-grid">
+    <div class="st-left">
+      <div class="video-container gb st-stage">
+        <video id="live-preview" autoplay muted playsinline></video>
+        <div id="video-placeholder"><svg class="ic xl"><use href="#i-video"/></svg><span>Your preview will appear here.</span></div>
+        <span id="live-badge" class="live-badge" hidden>● LIVE</span>
+        <span id="st-viewers" class="st-pill" hidden>👁 0</span>
+      </div>
+
+      <div class="st-modes" role="group" aria-label="Broadcast type">
+        <button type="button" class="st-mode active" data-mode="camera"><span>📷</span>Camera</button>
+        <button type="button" class="st-mode" data-mode="gameplay" id="mode-gameplay"><span>🎮</span>Screen + face</button>
+      </div>
+      <p id="st-hint" class="st-hint" hidden></p>
+
+      <div class="card gb studio-controls">
+        <div id="st-screen-opts" class="st-opts" hidden>
+          <label class="st-check"><input type="checkbox" id="live-face" checked> Show my face</label>
+          <label class="st-corner" id="live-orient-wrap" hidden>Game orientation
+            <select id="live-orient"><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select>
+          </label>
+          <label class="st-corner">Face position
+            <select id="live-face-corner">
+              <option value="tr">Top right</option><option value="tl">Top left</option>
+              <option value="br">Bottom right</option><option value="bl">Bottom left</option>
+            </select>
+          </label>
+        </div>
+        <label for="live-game">Choose your game</label>
+        <select id="live-game"><option value="">Select a game</option></select>
+        <label for="live-game-custom">If your game isn't listed</label>
+        <input type="text" id="live-game-custom" placeholder="Enter another game name" maxlength="60">
+        <label for="live-title">Stream title</label>
+        <input type="text" id="live-title" placeholder="Give your live a title" maxlength="80">
+        <div class="btn-row">
+          <button type="button" id="camera-start" class="btn btn-outline">Enable camera</button>
+          <button type="button" id="broadcast-start" class="btn btn-primary" disabled>Go live</button>
+          <button type="button" id="broadcast-stop" class="btn btn-danger" hidden>End broadcast</button>
+        </div>
+        <p id="live-status" class="form-message">Camera and streaming services are not yet connected.</p>
+      </div>
     </div>
-    <p id="live-status" class="form-message">Camera and streaming services are not yet connected.</p>
-  </div>
 
-  <div class="card gb">
-    <span class="eyebrow">Live interactions</span>
-    <p class="muted">Viewer count, comments, likes and reactions will appear here when broadcasting is connected.</p>
-    <div id="live-viewer-count" class="viewer-count">0 viewers</div>
+    <div class="st-right card gb">
+      <span class="eyebrow">Live interactions</span>
+      <div class="st-stats">
+        <div><b id="live-viewer-count" class="viewer-count">0 viewers</b></div>
+        <div><b id="st-hearts" class="st-hearts">❤ 0</b></div>
+      </div>
+      <div id="studio-chat" class="st-chat"><p class="muted">Chat, hearts and gifts appear here once you are live.</p></div>
+    </div>
   </div>
 </section>
 

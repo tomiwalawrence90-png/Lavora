@@ -12,7 +12,8 @@ const APP_ID = env("AGORA_APP_ID");
 const CERT = env("AGORA_APP_CERTIFICATE");
 const FREE = Number(env("AGORA_FREE_MINUTES") || 10000);
 const SAFE = Number(env("AGORA_SAFE_PERCENT") || 60) / 100;      // block new streams at 60% of the allowance
-const MULT = Number(env("AGORA_MINUTE_MULTIPLIER") || 2);        // conservative: HD video counts 2x. VERIFY in Agora console.
+const MULT = Number(env("AGORA_MINUTE_MULTIPLIER") || 2);        // camera (640x360). Conservative. VERIFY in Agora console.
+const MULT_HD = Number(env("AGORA_MINUTE_MULTIPLIER_HD") || 4);  // screen/gameplay (1280x720). Conservative. VERIFY in Agora console.
 const MAX_MIN = Number(env("MAX_STREAM_MINUTES") || 180);
 const TTL = 1800;                                                // token lifetime (s); client renews before expiry
 const STALE_MS = 90_000;                                         // no heartbeat for 90s => stream is dead
@@ -52,7 +53,7 @@ function token(channel: string, uid: number, publisher: boolean) {
 function estMinutes(row: any, endMs: number) {
   const start = new Date(row.started_at ?? row.created_at).getTime();
   const mins = Math.min(MAX_MIN, Math.max(0, Math.ceil((endMs - start) / 60000)));
-  return mins * (1 + (row.audience_joins ?? 0)) * MULT;
+  return mins * (1 + (row.audience_joins ?? 0)) * (row.stream_type === "gameplay" ? MULT_HD : MULT);
 }
 async function finalize(row: any, status: "ended" | "failed", endMs = Date.now()) {
   await admin.from("streams").update({
@@ -112,8 +113,7 @@ Deno.serve(async (req) => {
       case "start": {
         const g = await gate();
         if (!g.ok) return j(403, { error: g.msg, code: "QUOTA_BLOCKED" });
-        if (body.stream_type && body.stream_type !== "camera")
-          return j(400, { error: "Gameplay streaming is not available yet.", code: "BAD_REQUEST" });
+        const stype = body.stream_type === "gameplay" ? "gameplay" : "camera";
         const title = String(body.title ?? "").trim().slice(0, 80);
         const game = String(body.game_name ?? "").trim().slice(0, 60);
         if (!title) return j(400, { error: "Add a stream title.", code: "BAD_REQUEST" });
@@ -125,7 +125,7 @@ Deno.serve(async (req) => {
         const channel = "lav_" + crypto.randomUUID().replaceAll("-", "");
         const now = new Date().toISOString();
         const { data: row, error } = await admin.from("streams").insert({
-          user_id: user.id, title, game_name: game || null, stream_type: "camera",
+          user_id: user.id, title, game_name: game || null, stream_type: stype,
           channel_name: channel, status: "starting", started_at: now, last_heartbeat: now,
         }).select("id").single();
         if (error) throw error;

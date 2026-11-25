@@ -1,0 +1,12 @@
+{
+  "appId": "com.lavora.app",
+  "appName": "LAVORA",
+  "webDir": "www",
+  "server": {
+    "url": "https://lavora-vk52.onrender.com",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
